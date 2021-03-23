@@ -29,6 +29,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.1.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Options" Version="3.1.0" />
 
 		<!-- Source Link needs this -->

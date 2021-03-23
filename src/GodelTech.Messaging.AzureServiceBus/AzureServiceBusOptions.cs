@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GodelTech.Messaging.AzureServiceBus.Options
+namespace GodelTech.Messaging.AzureServiceBus
 {
     /// <summary>
     /// Azure Service Bus options

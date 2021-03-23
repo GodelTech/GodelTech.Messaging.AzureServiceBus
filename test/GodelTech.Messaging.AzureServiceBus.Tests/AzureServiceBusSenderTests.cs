@@ -4,7 +4,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
-using GodelTech.Messaging.AzureServiceBus.Options;
 using GodelTech.Messaging.AzureServiceBus.Tests.Fakes;
 using Microsoft.Extensions.Options;
 using Moq;

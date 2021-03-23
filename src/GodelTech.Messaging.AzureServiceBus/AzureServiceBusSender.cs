@@ -2,7 +2,6 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
-using GodelTech.Messaging.AzureServiceBus.Options;
 using Microsoft.Extensions.Options;
 
 namespace GodelTech.Messaging.AzureServiceBus
