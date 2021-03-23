@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<PackageId>GodelTech.Messaging.AzureServiceBus</PackageId>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<Authors>v.rodchenko</Authors>
+		<Company>Godel Technologies</Company>
+		<Description>Library to work with Azure Service Bus.</Description>
+		<Copyright>Godel Technologies 2021</Copyright>
+		<PackageLicenseUrl>https://github.com/GodelTech/GodelTech.Messaging.AzureServiceBus/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/GodelTech/GodelTech.Messaging.AzureServiceBus/wiki</PackageProjectUrl>
+		<PackageIconUrl>https://www.gravatar.com/avatar/839234621070de51e7b9cabd5ceee8fe?s=64</PackageIconUrl>
+		<RepositoryUrl>https://github.com/GodelTech/GodelTech.Messaging.AzureServiceBus</RepositoryUrl>
+		<PackageTags>Messaging Azure ServiceBus</PackageTags>
+
+		<!-- XML documentation -->
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+		<!-- Source Link needs this -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+		<!-- SonarQube needs this -->
+		<ProjectGuid>{00000000-0000-0000-0000-000000000001}</ProjectGuid>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.1.1" />
+
+		<!-- Source Link needs this -->
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+	</ItemGroup>
+
+</Project>
