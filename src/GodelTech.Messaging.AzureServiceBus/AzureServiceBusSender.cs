@@ -9,7 +9,7 @@ namespace GodelTech.Messaging.AzureServiceBus
     /// <summary>
     /// Azure Service Bus sender
     /// </summary>
-    public class AzureServiceBusSender
+    public class AzureServiceBusSender : IAzureServiceBusSender
     {
         private readonly ServiceBusClient _serviceBusClient;
         private readonly AzureServiceBusOptions _azureServiceBusOptions;

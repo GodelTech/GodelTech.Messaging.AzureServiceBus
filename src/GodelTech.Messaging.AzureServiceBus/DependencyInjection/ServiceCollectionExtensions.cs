@@ -29,7 +29,7 @@ namespace Microsoft.AspNetCore.Builder
             services.Configure(optionsAction);
 
             // AzureServiceBusSender
-            services.AddTransient<AzureServiceBusSender>();
+            services.AddTransient<IAzureServiceBusSender, AzureServiceBusSender>();
 
             return services;
         }

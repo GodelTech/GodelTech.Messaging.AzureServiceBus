@@ -43,8 +43,9 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests.DependencyInjection
             Assert.NotNull(resultOptionsAction.Value);
             Assert.Equal(queues, resultOptionsAction.Value.Queues);
 
-            var resultAzureServiceBusSender = provider.GetRequiredService<AzureServiceBusSender>();
+            var resultAzureServiceBusSender = provider.GetRequiredService<IAzureServiceBusSender>();
             Assert.NotNull(resultAzureServiceBusSender);
+            Assert.IsType<AzureServiceBusSender>(resultAzureServiceBusSender);
         }
     }
 }
