@@ -3,7 +3,6 @@ using Azure.Messaging.ServiceBus;
 using GodelTech.Messaging.AzureServiceBus;
 using Microsoft.Extensions.DependencyInjection;
 
-// ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Builder
 {
     /// <summary>
