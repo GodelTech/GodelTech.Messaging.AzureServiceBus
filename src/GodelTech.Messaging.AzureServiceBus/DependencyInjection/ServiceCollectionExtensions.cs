@@ -1,6 +1,7 @@
 ﻿using System;
 using Azure.Messaging.ServiceBus;
 using GodelTech.Messaging.AzureServiceBus;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Builder
@@ -15,18 +16,25 @@ namespace Microsoft.AspNetCore.Builder
         /// </summary>
         /// <param name="services">Service collection.</param>
         /// <param name="connectionString">Connection string to Azure Service Bus.</param>
-        /// <param name="optionsAction">Azure Service Bus options action.</param>
+        /// <param name="configureOptions">Azure Service Bus options.</param>
         /// <returns></returns>
         public static IServiceCollection AddAzureServiceBusSender(
             this IServiceCollection services,
-            string connectionString,
-            Action<AzureServiceBusOptions> optionsAction)
+            Func<IConfiguration, string> connectionString,
+            Action<AzureServiceBusOptions, IConfiguration> configureOptions)
         {
             // ServiceBusClient
-            services.AddTransient(provider => new ServiceBusClient(connectionString));
+            services.AddTransient(
+                provider => new ServiceBusClient(
+                    connectionString(
+                        provider.GetService<IConfiguration>()
+                    )
+                )
+            );
 
             // Options
-            services.Configure(optionsAction);
+            services.AddOptions<AzureServiceBusOptions>()
+                .Configure(configureOptions);
 
             // AzureServiceBusSender
             services.AddTransient<IAzureServiceBusSender, AzureServiceBusSender>();
