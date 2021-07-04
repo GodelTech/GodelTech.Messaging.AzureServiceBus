@@ -24,7 +24,7 @@ namespace Microsoft.AspNetCore.Builder
             Action<AzureServiceBusOptions, IConfiguration> configureOptions)
         {
             // ServiceBusClient
-            services.AddTransient(
+            services.AddSingleton(
                 provider => new ServiceBusClient(
                     connectionString(
                         provider.GetService<IConfiguration>()
