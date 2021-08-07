@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Options;
 
+[assembly: CLSCompliant(false)]
 namespace GodelTech.Messaging.AzureServiceBus
 {
     /// <summary>
@@ -35,11 +36,17 @@ namespace GodelTech.Messaging.AzureServiceBus
         /// <param name="queueKey">Queue key.</param>
         /// <param name="model">The model.</param>
         /// <exception cref="ArgumentOutOfRangeException">No queue found with provided key.</exception>
-        public async Task SendAsync<TModel>(string queueKey, TModel model)
+        public Task SendAsync<TModel>(string queueKey, TModel model)
             where TModel : class
         {
             if (!_azureServiceBusOptions.Queues.TryGetValue(queueKey, out var queueName)) throw new ArgumentOutOfRangeException(nameof(queueKey), queueKey, "No queue found with provided key.");
 
+            return SendInternalAsync(queueName, model);
+        }
+
+        private async Task SendInternalAsync<TModel>(string queueName, TModel model)
+            where TModel : class
+        {
             var sender = _serviceBusClient.CreateSender(queueName);
 
             var messageToSend = new ServiceBusMessage(JsonSerializer.Serialize(model));
