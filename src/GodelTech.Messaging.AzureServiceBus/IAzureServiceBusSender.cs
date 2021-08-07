@@ -16,7 +16,7 @@ namespace GodelTech.Messaging.AzureServiceBus
         /// <param name="queueKey">Queue key.</param>
         /// <param name="model">The model.</param>
         /// <exception cref="ArgumentOutOfRangeException">No queue found with provided key.</exception>
-        public Task SendAsync<TModel>(string queueKey, TModel model)
+        Task SendAsync<TModel>(string queueKey, TModel model)
             where TModel : class;
     }
 }
