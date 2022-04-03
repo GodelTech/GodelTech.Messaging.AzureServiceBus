@@ -26,17 +26,17 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
 		<!-- SonarQube needs this -->
-		<ProjectGuid>{00000000-0000-0000-0000-000000000001}</ProjectGuid>
+		<ProjectGuid>{00000000-0000-0000-0000-000000000010}</ProjectGuid>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.2.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
-		<PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+		<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.7.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
 
 		<!-- Source Link needs this -->
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 	</ItemGroup>
 
 </Project>
