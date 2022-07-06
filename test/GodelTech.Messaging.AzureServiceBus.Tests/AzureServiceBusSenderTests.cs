@@ -100,7 +100,7 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests
             mockAzureServiceBusOptions
                 .Setup(x => x.Value)
                 .Returns(azureServiceBusOptions);
-            
+
             var sender = new AzureServiceBusSender(_mockServiceBusClient.Object, mockAzureServiceBusOptions.Object);
 
             var mockServiceBusSender = new Mock<ServiceBusSender>(MockBehavior.Strict);

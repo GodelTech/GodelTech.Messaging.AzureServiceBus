@@ -1,0 +1,7 @@
+{
+  "stryker-config": {
+    "test-projects": [
+      "../../test/GodelTech.Messaging.AzureServiceBus.Tests/GodelTech.Messaging.AzureServiceBus.Tests.csproj"
+    ]
+  }
+}

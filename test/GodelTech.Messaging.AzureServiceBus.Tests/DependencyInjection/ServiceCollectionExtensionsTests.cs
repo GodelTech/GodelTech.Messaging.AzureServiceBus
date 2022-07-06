@@ -19,9 +19,12 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests.DependencyInjection
             Expression<Func<IConfiguration, string>> connectionStringExpression = configuration => configuration
                 .GetValue<string>("AzureServiceBusOptions:ConnectionString");
 
-            Action<AzureServiceBusOptions, IConfiguration> configureOptions = (options, configuration) => configuration
-                .GetSection("AzureServiceBusOptions")
-                .Bind(options);
+            static void configureOptions(AzureServiceBusOptions options, IConfiguration configuration)
+            {
+                configuration
+                    .GetSection("AzureServiceBusOptions")
+                    .Bind(options);
+            }
 
             var services = new ServiceCollection();
 
