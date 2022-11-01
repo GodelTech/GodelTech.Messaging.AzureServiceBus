@@ -19,7 +19,7 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests.DependencyInjection
             Expression<Func<IConfiguration, string>> connectionStringExpression = configuration => configuration
                 .GetValue<string>("AzureServiceBusOptions:ConnectionString");
 
-            static void configureOptions(AzureServiceBusOptions options, IConfiguration configuration)
+            static void ConfigureOptions(AzureServiceBusOptions options, IConfiguration configuration)
             {
                 configuration
                     .GetSection("AzureServiceBusOptions")
@@ -43,7 +43,7 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests.DependencyInjection
                 );
 
             // Act
-            services.AddAzureServiceBusSender(connectionStringExpression.Compile(), configureOptions);
+            services.AddAzureServiceBusSender(connectionStringExpression.Compile(), ConfigureOptions);
 
             // Assert
             var provider = services.BuildServiceProvider();

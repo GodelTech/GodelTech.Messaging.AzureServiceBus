@@ -37,6 +37,8 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests
             // Arrange
             var model = new List<FakeModel>();
 
+            var cancellationToken = new CancellationToken();
+
             var azureServiceBusOptions = new AzureServiceBusOptions
             {
                 Queues = new Dictionary<string, string>
@@ -61,7 +63,7 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests
             var exception =
                 await Assert.ThrowsAsync<ArgumentOutOfRangeException>(
                     () =>
-                        sender.SendAsync("InternalKey", model)
+                        sender.SendAsync("InternalKey", model, cancellationToken)
                 );
 
             Assert.IsType<ArgumentOutOfRangeException>(exception);
@@ -82,6 +84,8 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests
                     Name = "TestName"
                 }
             };
+
+            var cancellationToken = new CancellationToken();
 
             var serializedModel = JsonSerializer.Serialize(model);
 
@@ -105,15 +109,18 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests
 
             var mockServiceBusSender = new Mock<ServiceBusSender>(MockBehavior.Strict);
             mockServiceBusSender
+                .Setup(x => x.DisposeAsync())
+                .Returns(ValueTask.CompletedTask)
+                .Verifiable();
+
+            mockServiceBusSender
                 .Setup(
                     x => x.SendMessageAsync(
                         It.Is<ServiceBusMessage>(
                             serviceBusMessage =>
                                 serviceBusMessage.Body.ToString() == serializedModel
                         ),
-                        It.Is<CancellationToken>(
-                            cancellationToken => cancellationToken == default
-                        )
+                        cancellationToken
                     )
                 )
                 .Returns(Task.CompletedTask)
@@ -129,7 +136,7 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests
                 .Verifiable();
 
             // Act
-            await sender.SendAsync("InternalKey", model);
+            await sender.SendAsync("InternalKey", model, cancellationToken);
 
             // Assert
             _mockServiceBusClient.VerifyAll();
