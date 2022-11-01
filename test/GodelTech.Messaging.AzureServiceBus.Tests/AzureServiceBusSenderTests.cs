@@ -109,6 +109,11 @@ namespace GodelTech.Messaging.AzureServiceBus.Tests
 
             var mockServiceBusSender = new Mock<ServiceBusSender>(MockBehavior.Strict);
             mockServiceBusSender
+                .Setup(x => x.DisposeAsync())
+                .Returns(ValueTask.CompletedTask)
+                .Verifiable();
+
+            mockServiceBusSender
                 .Setup(
                     x => x.SendMessageAsync(
                         It.Is<ServiceBusMessage>(

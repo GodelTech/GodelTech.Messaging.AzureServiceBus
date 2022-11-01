@@ -49,9 +49,9 @@ namespace GodelTech.Messaging.AzureServiceBus
         private async Task SendInternalAsync<TModel>(string queueName, TModel model, CancellationToken cancellationToken)
             where TModel : class
         {
-            var sender = _serviceBusClient.CreateSender(queueName);
-
             var messageToSend = new ServiceBusMessage(JsonSerializer.Serialize(model));
+
+            await using var sender = _serviceBusClient.CreateSender(queueName);
 
             await sender.SendMessageAsync(messageToSend, cancellationToken);
         }
