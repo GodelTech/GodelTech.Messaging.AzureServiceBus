@@ -24,7 +24,7 @@ namespace Microsoft.AspNetCore.Builder
             Action<AzureServiceBusOptions> configureOptions)
         {
             return services.AddAzureServiceBusSender(
-                () => new ServiceBusClient(
+                _ => new ServiceBusClient(
                     connectionString
                 ),
                 configureOptions
@@ -46,7 +46,7 @@ namespace Microsoft.AspNetCore.Builder
             Action<AzureServiceBusOptions> configureOptions)
         {
             return services.AddAzureServiceBusSender(
-                () => new ServiceBusClient(
+                _ => new ServiceBusClient(
                     fullyQualifiedNamespace,
                     credential
                 ),
@@ -56,7 +56,7 @@ namespace Microsoft.AspNetCore.Builder
 
         private static IServiceCollection AddAzureServiceBusSender(
             this IServiceCollection services,
-            Func<ServiceBusClient> serviceBusClient,
+            Func<IServiceProvider, ServiceBusClient> serviceBusClient,
             Action<AzureServiceBusOptions> configureOptions)
         {
             // ServiceBusClient
