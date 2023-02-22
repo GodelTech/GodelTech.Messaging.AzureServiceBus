@@ -1,7 +1,7 @@
 ﻿using System;
+using Azure.Identity;
 using Azure.Messaging.ServiceBus;
 using GodelTech.Messaging.AzureServiceBus;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Builder
@@ -20,17 +20,47 @@ namespace Microsoft.AspNetCore.Builder
         /// <returns></returns>
         public static IServiceCollection AddAzureServiceBusSender(
             this IServiceCollection services,
-            Func<IConfiguration, string> connectionString,
-            Action<AzureServiceBusOptions, IConfiguration> configureOptions)
+            string connectionString,
+            Action<AzureServiceBusOptions> configureOptions)
+        {
+            return services.AddAzureServiceBusSender(
+                new ServiceBusClient(
+                    connectionString
+                ),
+                configureOptions
+            );
+        }
+
+        /// <summary>
+        /// Register AzureServiceBusSender with the service collection.
+        /// </summary>
+        /// <param name="services">Service collection.</param>
+        /// <param name="fullyQualifiedNamespace">The fully qualified Service Bus namespace to connect to.</param>
+        /// <param name="credential">The Azure managed identity credential to use for authorization.</param>
+        /// <param name="configureOptions">Azure Service Bus options.</param>
+        /// <returns></returns>
+        public static IServiceCollection AddAzureServiceBusSender(
+            this IServiceCollection services,
+            string fullyQualifiedNamespace,
+            ManagedIdentityCredential credential,
+            Action<AzureServiceBusOptions> configureOptions)
+        {
+            return services.AddAzureServiceBusSender(
+                new ServiceBusClient(
+                    fullyQualifiedNamespace,
+                    credential
+                ),
+                configureOptions
+            );
+        }
+
+        private static IServiceCollection AddAzureServiceBusSender(
+            this IServiceCollection services,
+            ServiceBusClient serviceBusClient,
+            Action<AzureServiceBusOptions> configureOptions)
         {
             // ServiceBusClient
-            services.AddSingleton(
-                provider => new ServiceBusClient(
-                    connectionString(
-                        provider.GetService<IConfiguration>()
-                    )
-                )
-            );
+            services.AddSingleton(serviceBusClient);
 
             // Options
             services.AddOptions<AzureServiceBusOptions>()
