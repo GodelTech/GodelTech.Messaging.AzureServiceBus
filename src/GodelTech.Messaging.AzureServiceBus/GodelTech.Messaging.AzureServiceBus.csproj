@@ -4,13 +4,15 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>GodelTech.Messaging.AzureServiceBus</PackageId>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <Authors>v.rodchenko</Authors>
+    <Authors>Vladimir Rodchenko</Authors>
     <Company>Godel Technologies</Company>
     <Description>Library to work with Azure Service Bus.</Description>
     <Copyright>Godel Technologies 2021</Copyright>
-    <PackageLicenseUrl>https://github.com/GodelTech/GodelTech.Messaging.AzureServiceBus/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/GodelTech/GodelTech.Messaging.AzureServiceBus/wiki</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl>https://www.gravatar.com/avatar/839234621070de51e7b9cabd5ceee8fe?s=64</PackageIconUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/GodelTech/GodelTech.Messaging.AzureServiceBus</RepositoryUrl>
     <PackageTags>Messaging Azure ServiceBus</PackageTags>
 
@@ -28,6 +30,17 @@
     <!-- SonarQube needs this -->
     <ProjectGuid>{00000000-0000-0000-0000-000000000010}</ProjectGuid>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.10.4" />
