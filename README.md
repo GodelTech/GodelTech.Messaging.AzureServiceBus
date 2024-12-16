@@ -1,6 +1,7 @@
 # GodelTech.Messaging.AzureServiceBus
 
-Allows to add Azure Service Bus
+# Description
+GodelTech.Messaging.AzureServiceBus is a .NET library designed to facilitate the integration of Azure Service Bus into your applications. It provides methods to add Azure Service Bus senders, supporting both connection strings and managed identity for authentication.
 
 ```c#
 services.AddAzureServiceBusSender(
@@ -43,3 +44,6 @@ with `appsettings.json`
   }
 }
 ```
+
+# License
+This project is licensed under the MIT License. See the LICENSE file for more details.
